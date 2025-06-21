@@ -1297,6 +1297,20 @@ h3 {
     transform: rotate(5deg);
 }
 
+/* Styles for Mobile Touch Dragging */
+.ghost {
+    position: absolute;
+    opacity: 0.8;
+    z-index: 1000;
+    pointer-events: none; /* The ghost should not intercept touch events */
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.system.dragging-touch {
+    opacity: 0.3;
+}
+
 .system-target.valid-drop {
     border-color: var(--primary-color);
     background-color: rgba(0, 167, 149, 0.1);

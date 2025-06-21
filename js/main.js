@@ -468,64 +468,97 @@ document.addEventListener('DOMContentLoaded', () => {
         const startButton = document.getElementById('start-game');
         const resetButton = document.getElementById('reset-game');
 
-        // Drag and drop functionality with touch support
-        let draggedElement = null;
-        let touchStartX = 0;
-        let touchStartY = 0;
-
         const systems = document.querySelectorAll('.system');
         const targets = document.querySelectorAll('.system-target');
         const connectionLines = document.querySelectorAll('.connection-line');
+        let draggedElement = null;
+        let ghostElement = null;
+        let offsetX = 0;
+        let offsetY = 0;
 
-        systems.forEach(system => {
-            // Mouse events
-            system.addEventListener('dragstart', (e) => {
-                draggedElement = system;
-                system.classList.add('dragging');
-                e.dataTransfer.effectAllowed = 'move';
+        const setupGameEventListeners = () => {
+            systems.forEach(system => {
+                // Cleanup old listeners before adding new ones
+                system.replaceWith(system.cloneNode(true));
             });
 
-            system.addEventListener('dragend', () => {
-                system.classList.remove('dragging');
-                draggedElement = null;
-            });
+            // Re-query the cloned elements
+            const newSystems = document.querySelectorAll('.system');
 
-            // Touch events for mobile
-            system.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                draggedElement = system;
-                system.classList.add('dragging');
-                
-                const touch = e.touches[0];
-                touchStartX = touch.clientX;
-                touchStartY = touch.clientY;
-            });
+            newSystems.forEach(system => {
+                // Mouse events for Desktop
+                system.addEventListener('dragstart', e => {
+                    draggedElement = system;
+                    setTimeout(() => system.classList.add('dragging'), 0);
+                    e.dataTransfer.effectAllowed = 'move';
+                });
 
-            system.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                if (draggedElement) {
-                    const touch = e.touches[0];
-                    const deltaX = touch.clientX - touchStartX;
-                    const deltaY = touch.clientY - touchStartY;
+                system.addEventListener('dragend', () => {
+                    system.classList.remove('dragging');
+                });
+
+                // Touch events for Mobile
+                system.addEventListener('touchstart', e => {
+                    if (system.style.pointerEvents === 'none') return;
+                    e.preventDefault();
+                    draggedElement = system;
                     
-                    // Move the dragged element
-                    draggedElement.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-                }
-            });
+                    ghostElement = system.cloneNode(true);
+                    ghostElement.classList.add('ghost');
+                    document.body.appendChild(ghostElement);
 
-            system.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                if (draggedElement) {
-                    draggedElement.classList.remove('dragging');
-                    draggedElement.style.transform = '';
-                    draggedElement = null;
-                }
+                    const touch = e.touches[0];
+                    const rect = system.getBoundingClientRect();
+                    offsetX = touch.clientX - rect.left;
+                    offsetY = touch.clientY - rect.top;
+
+                    // Explicitly set the size of the ghost element
+                    ghostElement.style.width = `${rect.width}px`;
+                    ghostElement.style.height = `${rect.height}px`;
+
+                    ghostElement.style.left = `${touch.pageX - offsetX}px`;
+                    ghostElement.style.top = `${touch.pageY - offsetY}px`;
+
+                    system.classList.add('dragging-touch');
+                }, { passive: false });
             });
+        };
+
+        document.addEventListener('touchmove', e => {
+            if (!ghostElement) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            ghostElement.style.left = `${touch.pageX - offsetX}px`;
+            ghostElement.style.top = `${touch.pageY - offsetY}px`;
+        }, { passive: false });
+
+        document.addEventListener('touchend', e => {
+            if (!ghostElement) return;
+
+            ghostElement.style.display = 'none';
+            const endTarget = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+            ghostElement.style.display = 'block';
+
+            let validDropTarget = null;
+            if (endTarget && endTarget.classList.contains('system-target')) {
+                validDropTarget = endTarget;
+            } else if (endTarget && endTarget.closest('.system-target')) {
+                validDropTarget = endTarget.closest('.system-target');
+            }
+
+            if (validDropTarget) {
+                const targetIndex = Array.from(targets).indexOf(validDropTarget);
+                handleConnection(validDropTarget, targetIndex);
+            }
+            
+            draggedElement.classList.remove('dragging-touch');
+            document.body.removeChild(ghostElement);
+            ghostElement = null;
+            draggedElement = null;
         });
 
         targets.forEach((target, index) => {
-            // Mouse events
-            target.addEventListener('dragover', (e) => {
+            target.addEventListener('dragover', e => {
                 e.preventDefault();
                 if (draggedElement && !target.classList.contains('connected')) {
                     target.classList.add('valid-drop');
@@ -536,38 +569,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 target.classList.remove('valid-drop');
             });
 
-            target.addEventListener('drop', (e) => {
+            target.addEventListener('drop', e => {
                 e.preventDefault();
                 handleConnection(target, index);
-            });
-
-            // Touch events for mobile
-            target.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                if (draggedElement && !target.classList.contains('connected')) {
-                    target.classList.add('valid-drop');
-                }
-            });
-
-            target.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                if (draggedElement) {
-                    handleConnection(target, index);
-                }
-            });
-
-            target.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                // Remove valid-drop class when touch moves away
-                if (draggedElement) {
-                    const touch = e.touches[0];
-                    const rect = target.getBoundingClientRect();
-                    
-                    if (touch.clientX < rect.left || touch.clientX > rect.right ||
-                        touch.clientY < rect.top || touch.clientY > rect.bottom) {
-                        target.classList.remove('valid-drop');
-                    }
-                }
             });
         });
 
@@ -665,52 +669,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 systemsLeft.appendChild(system);
             });
             
-            // Reattach event listeners for both mouse and touch
-            systems.forEach(system => {
-                // Mouse events
-                system.addEventListener('dragstart', (e) => {
-                    draggedElement = system;
-                    system.classList.add('dragging');
-                    e.dataTransfer.effectAllowed = 'move';
-                });
-
-                system.addEventListener('dragend', () => {
-                    system.classList.remove('dragging');
-                    draggedElement = null;
-                });
-
-                // Touch events for mobile
-                system.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    draggedElement = system;
-                    system.classList.add('dragging');
-                    
-                    const touch = e.touches[0];
-                    touchStartX = touch.clientX;
-                    touchStartY = touch.clientY;
-                });
-
-                system.addEventListener('touchmove', (e) => {
-                    e.preventDefault();
-                    if (draggedElement) {
-                        const touch = e.touches[0];
-                        const deltaX = touch.clientX - touchStartX;
-                        const deltaY = touch.clientY - touchStartY;
-                        
-                        // Move the dragged element
-                        draggedElement.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-                    }
-                });
-
-                system.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    if (draggedElement) {
-                        draggedElement.classList.remove('dragging');
-                        draggedElement.style.transform = '';
-                        draggedElement = null;
-                    }
-                });
-            });
+            // Re-initialize event listeners for all systems
+            setupGameEventListeners();
         }
 
         function addVisualDistraction() {
@@ -720,6 +680,12 @@ document.addEventListener('DOMContentLoaded', () => {
             randomSystems.forEach(system => {
                 system.style.animation = 'blink-subtle 2s infinite';
             });
+            
+            // Re-initialize event listeners after resetting order
+            setupGameEventListeners();
+
+            // Clear any dragged element state
+            draggedElement = null;
         }
 
         function endGame(won) {
@@ -823,6 +789,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resetButton) {
             resetButton.addEventListener('click', resetGame);
         }
+
+        // Initial setup of event listeners
+        setupGameEventListeners();
     }
 
     // FAQ functionality
