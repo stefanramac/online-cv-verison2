@@ -434,6 +434,10 @@ h3 {
 .portfolio-action {
     text-align: center;
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 /* ===== Resume Section ===== */
