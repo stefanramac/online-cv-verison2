@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo-text">Stefan Ramač</a>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="/" class="nav-link"><i class="fas fa-arrow-left"></i> Get back to home page</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <p>&copy; 2024 All rights reserved.</p>
+        </footer>
+    </aside>
+
+    <a href="/" class="main-logo-glitch" data-text="Register">Register</a>
+
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <main class="main-content-admin">
+        <div class="login-container">
+            <h2>Admin Registration</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" id="nickname" name="nickname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-submit">Register</button>
+            </form>
+            <div id="register-status"></div>
+             <p class="register-hint">Already have an account? <a href="/login">Login here</a>.</p>
+        </div>
+    </main>
+    <script src="js/common.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html> 

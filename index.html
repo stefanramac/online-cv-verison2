@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stefan Ramač - Integration Specialist</title>
+    <meta name="description" content="Integration Specialist and Architect with expertise in Java, WebMethods, Azure, and enterprise integration solutions.">
+    <meta name="keywords" content="Integration Specialist, Java Developer, WebMethods, Azure, API Development, Enterprise Integration, Software AG, TIBCO, MongoDB">
+    <meta name="author" content="Stefan Ramač">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#00a795">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stefanramac.com/">
+    <meta property="og:title" content="Stefan Ramač - Integration Specialist">
+    <meta property="og:description" content="Integration Specialist and Architect with expertise in Java, WebMethods, Azure, and enterprise integration solutions.">
+    <meta property="og:image" content="https://stefanramac.com/img/profile-pic.jpeg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stefanramac.com/">
+    <meta property="twitter:title" content="Stefan Ramač - Integration Specialist">
+    <meta property="twitter:description" content="Integration Specialist and Architect with expertise in Java, WebMethods, Azure, and enterprise integration solutions.">
+    <meta property="twitter:image" content="https://stefanramac.com/img/profile-pic.jpeg">
+    
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="img/profile-pic.jpeg">
+    <link rel="canonical" href="https://stefanramac.com/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,11 +34,13 @@
 
     <!-- ===== Left Sidebar ===== -->
     <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="#home" class="logo-text">Stefan Ramač</a>
+        </div>
         <div class="profile">
             <div class="profile-img">
                 <img src="img/profile-pic.jpeg" alt="Stefan Ramač profile picture">
             </div>
-            <h1>Stefan Ramač</h1>
             <p class="job-title">Integration Specialist</p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/stefanramac/" id="linkedin-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -30,7 +55,17 @@
                 <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> About Me</a></li>
                 <li><a href="#experience" class="nav-link"><i class="fas fa-file-alt"></i> Experience</a></li>
+                <li><a href="#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+                <li><a href="#game" class="nav-link"><i class="fas fa-gamepad"></i> Mini Game</a></li>
+                <li><a href="#blog" class="nav-link"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="#faq" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a></li>
                 <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="nav-separator"></li>
+                <li class="user-info-nav" style="display: none;">
+                    <span class="nickname-display"></span>
+                </li>
+                <li id="add-blog-nav" style="display: none;"><a href="/dashboard" class="nav-link"><i class="fas fa-plus-square"></i> Add Blog</a></li>
+                <li><a href="/login" class="nav-link" id="login-logout-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
 
@@ -39,9 +74,28 @@
         </footer>
     </aside>
 
+    <a href="#home" class="main-logo-glitch" data-text="Stefan Ramač">Stefan Ramač</a>
+
+    <!-- ===== Progress Bar ===== -->
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <!-- ===== Back to Top Button ===== -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- ===== Menu Toggle Button (for mobile) ===== -->
     <div class="menu-toggle">
         <i class="fas fa-bars"></i>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    <div class="theme-hint">
+        <span>Mode</span>
+        <i class="fas fa-long-arrow-alt-left"></i>
     </div>
     <div class="hamburger-hint">
         <span>Menu</span>
@@ -174,6 +228,181 @@
             </div>
         </section>
 
+        <!-- ===== Portfolio Section ===== -->
+        <section id="portfolio" class="section">
+            <h2>Project Portfolio: This Website</h2>
+            <div class="portfolio-container">
+                <div class="portfolio-text">
+                    <p>This website itself is a comprehensive portfolio project, meticulously built from the ground up to showcase a wide range of full-stack development skills. It serves as a practical demonstration of my ability to design, develop, and deploy a complete web application with both a client-facing frontend and a robust backend infrastructure.</p>
+                    <p>The entire platform, from the interactive user interface to the secure API, was developed using a modern technology stack. It is not based on a template or a CMS; every line of code was written to create a custom, performant, and feature-rich experience.</p>
+                    <h3>Technologies Used:</h3>
+                    <ul>
+                        <li><strong>Backend:</strong> Node.js with the Express.js framework to create a powerful and scalable RESTful API.</li>
+                        <li><strong>Database:</strong> MongoDB (a NoSQL database) for flexible and efficient data storage for user accounts and blog posts.</li>
+                        <li><strong>Authentication:</strong> Secure user registration and login system using JSON Web Tokens (JWT) and bcrypt for password hashing.</li>
+                        <li><strong>Frontend:</strong> Pure Vanilla JavaScript, HTML5, and CSS3, demonstrating strong foundational skills without reliance on frontend frameworks. The UI is fully responsive, interactive, and includes features like a theme toggle and dynamic content loading.</li>
+                        <li><strong>API Documentation:</strong> Professional API documentation generated with Swagger (OpenAPI), providing clear guidance on how to interact with the backend services.</li>
+                    </ul>
+                    <p>This project encapsulates my expertise in API development, database management, user authentication, and frontend design. For a deeper technical dive, I invite you to explore the API documentation.</p>
+                </div>
+                <div class="portfolio-action">
+                    <a href="/api-docs" class="btn-download" target="_blank" rel="noopener noreferrer">View API Documentation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Game Section ===== -->
+        <section id="game" class="section">
+            <h2>Integration Challenge</h2>
+            <p class="game-description">Connect the systems to create a working integration! Drag and drop the connectors to link matching systems.</p>
+            
+            <div class="game-container">
+                <div class="game-stats">
+                    <div class="score">Score: <span id="game-score">0</span></div>
+                    <div class="timer">Time: <span id="game-timer">60</span>s</div>
+                    <div class="level">Level: <span id="game-level">1</span></div>
+                </div>
+                
+                <div class="game-board">
+                    <div class="systems-left">
+                        <div class="system" data-system="java" draggable="true">
+                            <i class="fab fa-java"></i>
+                            <span>Java System</span>
+                        </div>
+                        <div class="system" data-system="webmethods" draggable="true">
+                            <i class="fas fa-cogs"></i>
+                            <span>WebMethods</span>
+                        </div>
+                        <div class="system" data-system="azure" draggable="true">
+                            <i class="fab fa-microsoft"></i>
+                            <span>Azure Cloud</span>
+                        </div>
+                        <div class="system" data-system="mongodb" draggable="true">
+                            <i class="fas fa-database"></i>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="connection-area">
+                        <div class="connection-line"></div>
+                        <div class="connection-line"></div>
+                        <div class="connection-line"></div>
+                        <div class="connection-line"></div>
+                    </div>
+                    
+                    <div class="systems-right">
+                        <div class="system-target" data-target="java">
+                            <i class="fab fa-java"></i>
+                            <span>Java API</span>
+                        </div>
+                        <div class="system-target" data-target="webmethods">
+                            <i class="fas fa-cogs"></i>
+                            <span>ESB Platform</span>
+                        </div>
+                        <div class="system-target" data-target="azure">
+                            <i class="fab fa-microsoft"></i>
+                            <span>Cloud Services</span>
+                        </div>
+                        <div class="system-target" data-target="mongodb">
+                            <i class="fas fa-database"></i>
+                            <span>NoSQL DB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="start-game" class="btn-game">Start Game</button>
+                    <button id="reset-game" class="btn-game">Reset</button>
+                </div>
+                
+                <div id="game-message" class="game-message"></div>
+            </div>
+        </section>
+
+        <!-- ===== Blog Section ===== -->
+        <section id="blog" class="section">
+            <h2>Blog & Articles</h2>
+            <p class="blog-description">Technical insights, tutorials, and thoughts on integration and software development.</p>
+            
+            <div class="blog-container">
+                <div class="blog-filters">
+                    <!-- Filter buttons will be dynamically inserted here -->
+                </div>
+                
+                <div class="blog-grid">
+                    <!-- Blog cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ Section ===== -->
+        <section id="faq" class="section">
+            <h2>Frequently Asked Questions</h2>
+            <p class="faq-description">Find answers to common questions about my services and expertise.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is an Integration Specialist?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>An Integration Specialist is a professional who designs, develops, and maintains connections between different software systems, databases, and applications. I focus on creating seamless data flow and communication between disparate systems to improve business efficiency and reduce manual processes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What technologies do you specialize in?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I specialize in Java (Spring Boot), Software AG WebMethods, TIBCO BusinessWorks, Microsoft Azure, REST & SOAP web services, MongoDB, SQL databases, and various integration platforms. I also have experience with cloud-native solutions and modern API development practices.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does a typical integration project take?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project duration varies depending on complexity. Simple API integrations might take 2-4 weeks, while complex enterprise integrations can take 2-6 months. I follow agile methodologies and provide regular updates throughout the project lifecycle.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you provide ongoing support and maintenance?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, I offer comprehensive support and maintenance services. This includes monitoring, troubleshooting, performance optimization, updates, and 24/7 emergency support for critical systems. I also provide documentation and training for your team.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can you work with legacy systems?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I have extensive experience working with legacy systems and modernizing them. I can help integrate old systems with new technologies, create APIs for legacy applications, and gradually migrate to modern platforms while maintaining business continuity.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your approach to security in integrations?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Security is paramount in all my integration projects. I implement industry-standard security measures including authentication, authorization, encryption, API security, and compliance with data protection regulations. I also conduct security audits and provide recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== Contact Section ===== -->
         <section id="contact" class="section">
              <h2>Contact Me</h2>
@@ -200,5 +429,20 @@
     </main>
     
     <script src="js/main.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html> 

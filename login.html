@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo-text">Stefan Ramač</a>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="/" class="nav-link"><i class="fas fa-arrow-left"></i> Get back to home page</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <p>&copy; 2024 All rights reserved.</p>
+        </footer>
+    </aside>
+
+    <a href="/" class="main-logo-glitch" data-text="Login">Login</a>
+
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <main class="main-content-admin">
+        <div class="login-container">
+            <h2>Admin Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+            <div id="login-status"></div>
+            <p class="register-hint">Don't have an account? <a href="/register">Register here</a>.</p>
+        </div>
+    </main>
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html> 

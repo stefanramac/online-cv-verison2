@@ -1,0 +1,257 @@
+.admin-body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family-main);
+    background-image: url('../img/basketball-hoop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    overflow-y: auto; /* Force scrollbar when content overflows */
+}
+
+.admin-body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.standalone-logo {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 1px;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.standalone-logo:hover {
+    color: var(--primary-color);
+}
+
+.login-container,
+.dashboard-container {
+    background-color: var(--bg-dark-transparent);
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 800px; /* Unified max-width */
+    text-align: center;
+    /* margin: 0 auto; */ /* No longer needed with flex */
+}
+
+.dashboard-container {
+    /* max-width: 800px; */ /* Already set above */
+    text-align: left;
+}
+
+.login-container h2,
+.dashboard-header h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#logout-btn {
+    padding: 10px 20px;
+}
+
+.form-group label {
+    font-size: 1rem;
+}
+
+.register-hint {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-secondary-color);
+}
+
+.register-hint a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#login-status,
+#register-status,
+#add-post-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* New styles for admin layout with sidebar */
+.main-content-admin {
+    transition: margin-left 0.3s ease;
+    padding: 4rem 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* min-height: 100vh; */ /* Removed, as body now handles scrolling */
+    box-sizing: border-box;
+}
+
+@media (min-width: 1025px) {
+    .main-content-admin {
+        margin-left: 0px;
+    }
+}
+
+/* Ensure standalone logo on admin pages is hidden when sidebar is introduced */
+.admin-body > .standalone-logo {
+    display: none;
+}
+
+/* Light Theme Adjustments for Admin Pages */
+[data-theme='light'] .admin-body::before {
+    background: rgba(255, 255, 255, 0.3); /* Lighter overlay for light mode */
+    backdrop-filter: blur(5px);
+}
+
+[data-theme='light'] .login-container,
+[data-theme='light'] .dashboard-container {
+    background-color: rgba(255, 255, 255, 0.7); /* More opaque white background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='light'] .login-container h2,
+[data-theme='light'] .dashboard-header h2 {
+    color: #333; /* Darker text for titles */
+}
+
+[data-theme='light'] .form-group label {
+    color: #555; /* Darker text for labels */
+}
+
+[data-theme='light'] .form-control {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+[data-theme='light'] .register-hint {
+    color: #555; /* Darker text for hint */
+}
+
+/* Styles for My Blogs Page */
+.my-blogs-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center cards horizontally in the container */
+    gap: 2rem;
+}
+
+.blog-post-card {
+    background-color: var(--bg-dark-transparent-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    display: flex;
+    width: 100%;
+    max-width: 750px; /* Control the max width of the cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.card-img {
+    width: 250px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.card-summary {
+    font-size: 0.95rem;
+    color: var(--text-secondary-color);
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* Responsive adjustments for blog cards */
+@media (max-width: 768px) {
+    .blog-post-card {
+        flex-direction: column;
+    }
+    .card-img {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+.btn-update, .btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-update {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-update:hover {
+    background-color: #008a7b;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+@media (min-width: 1025px) {
+    .main-content-admin {
+        margin-left: 0px;
+    }
+} 

@@ -1,0 +1,27 @@
+{
+  "name": "Stefan Ramač - Integration Specialist",
+  "short_name": "Stefan Ramač",
+  "description": "Personal website of Stefan Ramač, Integration Specialist and Architect",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#00a795",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "img/profile-pic.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/profile-pic.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "technology"],
+  "lang": "sr",
+  "dir": "ltr"
+} 

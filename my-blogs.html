@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Posts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="logo-text">Admin Panel</a>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="/dashboard" class="nav-link"><i class="fas fa-plus-square"></i> Add Post</a></li>
+                <li><a href="/my-blogs" class="nav-link active"><i class="fas fa-newspaper"></i> See My Blogs</a></li>
+                <li><a href="#" id="logout-btn-sidebar" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li class="nav-separator"></li>
+                <li><a href="/" class="nav-link"><i class="fas fa-arrow-left"></i> Get back to home page</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <p>&copy; 2024 All rights reserved.</p>
+        </footer>
+    </aside>
+    
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <main class="main-content-admin">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h2>My Blog Posts</h2>
+            </div>
+            <div id="my-blogs-container" class="my-blogs-grid">
+                <!-- Blog posts will be loaded here -->
+            </div>
+            <div id="my-blogs-status"></div>
+        </div>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/my-blogs.js"></script>
+</body>
+</html> 
