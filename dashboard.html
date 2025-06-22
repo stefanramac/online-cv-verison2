@@ -12,15 +12,19 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <a href="/" class="logo-text">Admin Panel</a>
+            <a href="/dashboard" class="logo-text">Admin Panel</a>
         </div>
         <nav class="navigation">
             <ul>
-                <li><a href="/dashboard" class="nav-link active"><i class="fas fa-plus-square"></i> Add Post</a></li>
+                <li><a href="/dashboard" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/add-post" class="nav-link"><i class="fas fa-plus-square"></i> Add Post</a></li>
                 <li><a href="/my-blogs" class="nav-link"><i class="fas fa-newspaper"></i> See My Blogs</a></li>
+                <li><a href="/health" class="nav-link"><i class="fas fa-heartbeat"></i> System Health</a></li>
+                <li><a href="/settings" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+                <li class="nav-separator"></li>
                 <li><a href="#" id="logout-btn-sidebar" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 <li class="nav-separator"></li>
-                <li><a href="/" class="nav-link"><i class="fas fa-arrow-left"></i> Get back to home page</a></li>
+                <li><a href="/" class="nav-link"><i class="fas fa-home"></i> Back to Main Site</a></li>
             </ul>
         </nav>
         <footer>
@@ -41,42 +45,34 @@
         <div class="dashboard-container">
             <div class="dashboard-header">
                 <h2>Admin Dashboard</h2>
-                <button id="logout-btn" class="btn-game">Logout</button>
+                <div class="user-profile">
+                    <span id="user-nickname" class="nickname-display"></span>
+                    <button id="logout-btn" class="btn-logout">Logout</button>
+                </div>
             </div>
-            
-            <h3>Add New Blog Post</h3>
-            <form id="add-post-form">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" required>
+
+            <div id="dashboard-welcome">
+                <h3 id="welcome-message"></h3>
+                <p>What would you like to do today?</p>
+                <div class="dashboard-actions">
+                    <a href="/add-post" class="dashboard-action-btn">
+                        <i class="fas fa-plus-square"></i>
+                        <span>Add New Blog Post</span>
+                    </a>
+                    <a href="/my-blogs" class="dashboard-action-btn">
+                        <i class="fas fa-newspaper"></i>
+                        <span>See My Blogs</span>
+                    </a>
+                    <a href="/health" class="dashboard-action-btn">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>System Health</span>
+                    </a>
+                    <a href="/settings" class="dashboard-action-btn">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <label for="summary">Summary</label>
-                    <textarea id="summary" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="imageUrl">Image URL</label>
-                    <input type="url" id="imageUrl" required>
-                </div>
-                 <div class="form-group">
-                    <label for="mainCategory">Main Category</label>
-                    <input type="text" id="mainCategory" required placeholder="e.g., Integration">
-                </div>
-                <div class="form-group">
-                    <label for="categories">Categories (comma-separated)</label>
-                    <input type="text" id="categories" required placeholder="e.g., integration, java, tutorial">
-                </div>
-                <div class="form-group">
-                    <label for="readingTime">Reading Time (minutes)</label>
-                    <input type="number" id="readingTime" required>
-                </div>
-                <div class="form-group">
-                    <label for="link">Full Post Link</label>
-                    <input type="url" id="link" required>
-                </div>
-                <button type="submit" class="btn-submit">Add Post</button>
-            </form>
-            <div id="add-post-status"></div>
+            </div>
         </div>
     </main>
 

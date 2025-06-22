@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const fs = require('fs');
+const fetch = require('node-fetch');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +19,30 @@ const jwtSecret = process.env.JWT_SECRET || 'your_default_jwt_secret';
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '')));
+
+// ===== HTML Page Routes =====
+// These routes handle serving the HTML files for clean URLs
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dashboard.html'));
+});
+app.get('/add-post', (req, res) => {
+    res.sendFile(path.join(__dirname, 'add-post.html'));
+});
+app.get('/my-blogs', (req, res) => {
+    res.sendFile(path.join(__dirname, 'my-blogs.html'));
+});
+app.get('/health', (req, res) => {
+    res.sendFile(path.join(__dirname, 'health.html'));
+});
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login.html'));
+});
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, 'register.html'));
+});
+app.get('/settings', (req, res) => {
+    res.sendFile(path.join(__dirname, 'settings.html'));
+});
 
 // MongoDB Connection
 const dbUsername = process.env.DB_USERNAME;
@@ -247,6 +272,72 @@ app.post('/api/register', async (req, res) => {
 
 /**
  * @swagger
+ * /api/health:
+ *   get:
+ *     summary: Check the health status of the application and its dependencies
+ *     tags: [Health]
+ *     responses:
+ *       200:
+ *         description: A JSON object with the health status of each service.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 api:
+ *                   type: string
+ *                   example: Operational
+ *                 database:
+ *                   type: string
+ *                   example: Operational
+ *                 external:
+ *                   type: object
+ *                   properties:
+ *                     github:
+ *                       type: string
+ *                       example: Operational
+ *       503:
+ *         description: One or more services are unavailable.
+ */
+app.get('/api/health', async (req, res) => {
+    try {
+        const healthStatus = {
+            api: 'Operational',
+            database: 'Unavailable',
+            external: {
+                github: 'Unavailable'
+            }
+        };
+
+        // Check Database
+        try {
+            await db.admin().ping();
+            healthStatus.database = 'Operational';
+        } catch (dbError) {
+            // Database is considered down
+        }
+
+        // Check External Service (GitHub API)
+        try {
+            const githubRes = await fetch('https://api.github.com');
+            if (githubRes.ok) {
+                healthStatus.external.github = 'Operational';
+            }
+        } catch (fetchError) {
+            // GitHub API is considered down
+        }
+
+        const isDown = healthStatus.database === 'Unavailable' || healthStatus.external.github === 'Unavailable';
+
+        res.status(isDown ? 503 : 200).json(healthStatus);
+
+    } catch (err) {
+        res.status(500).json({ message: "Failed to fetch health status", error: err.message });
+    }
+});
+
+/**
+ * @swagger
  * /api/login:
  *   post:
  *     summary: Log in a user
@@ -308,9 +399,15 @@ app.post('/api/login', async (req, res) => {
 // Middleware to verify JWT
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+    const token = authHeader && authHeader.split(' ')[1];
 
-    if (token == null) return res.sendStatus(401);
+    if (token == null) {
+        // Allow access to public-facing pages if no token is present
+        if (req.path === '/' || req.path.startsWith('/css') || req.path.startsWith('/js') || req.path.startsWith('/img')) {
+            return next();
+        }
+        return res.sendStatus(401);
+    }
 
     jwt.verify(token, jwtSecret, (err, user) => {
         if (err) return res.sendStatus(403);
@@ -318,6 +415,91 @@ const authenticateToken = (req, res, next) => {
         next();
     });
 };
+
+/**
+ * @swagger
+ * /api/user:
+ *   get:
+ *     summary: Get the current logged-in user's details
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User details fetched successfully.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Server error.
+ */
+app.get('/api/user', authenticateToken, async (req, res) => {
+    try {
+        const user = await db.collection('users').findOne({ _id: new ObjectId(req.user.userId) });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        // Exclude password from the response
+        const { password, ...userData } = user;
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json({ message: "Server error", error: err.message });
+    }
+});
+
+/**
+ * @swagger
+ * /api/user:
+ *   put:
+ *     summary: Update the current logged-in user's details
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               lastname:
+ *                 type: string
+ *               nickname:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User profile updated successfully.
+ *       400:
+ *         description: Bad request (e.g., email already exists).
+ *       500:
+ *         description: Server error.
+ */
+app.put('/api/user', authenticateToken, async (req, res) => {
+    try {
+        const { name, lastname, nickname, password } = req.body;
+        const updateData = {};
+
+        if (name) updateData.name = name;
+        if (lastname) updateData.lastname = lastname;
+        if (nickname) updateData.nickname = nickname;
+        
+        if (password) {
+            updateData.password = await bcrypt.hash(password, 10);
+        }
+
+        await db.collection('users').updateOne(
+            { _id: new ObjectId(req.user.userId) },
+            { $set: updateData }
+        );
+        
+        res.json({ message: "Profile updated successfully" });
+    } catch (err) {
+        res.status(500).json({ message: "Server error during profile update", error: err.message });
+    }
+});
 
 /**
  * @swagger
@@ -590,40 +772,6 @@ app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
         res.status(500).json({ message: "Failed to delete post", error: err.message });
     }
 });
-
-
-// ===== Serving HTML Pages =====
-
-// Serve the main page
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Serve the admin login page
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'));
-});
-
-// Serve the admin registration page
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'register.html'));
-});
-
-// Serve the dashboard page
-app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dashboard.html'));
-});
-
-// Serve the page to view user's blogs
-app.get('/my-blogs', (req, res) => {
-    res.sendFile(path.join(__dirname, 'my-blogs.html'));
-});
-
-// Serve the page to edit a blog post
-app.get('/edit-post', (req, res) => {
-    res.sendFile(path.join(__dirname, 'edit-post.html'));
-});
-
 
 // Start the server
 app.listen(port, host, () => {

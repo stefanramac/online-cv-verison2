@@ -1,0 +1,118 @@
+2025-06-22T09:59:59.750Z: MongoServerError: bad auth : Authentication failed.
+    at Connection.sendCommand (/Users/stefanramac/Documents/Projects/online-cv-verison2/node_modules/mongodb/lib/cmap/connection.js:305:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Connection.command (/Users/stefanramac/Documents/Projects/online-cv-verison2/node_modules/mongodb/lib/cmap/connection.js:333:26)
+    at async executeScram (/Users/stefanramac/Documents/Projects/online-cv-verison2/node_modules/mongodb/lib/cmap/auth/scram.js:79:22)
+    at async ScramSHA256.auth (/Users/stefanramac/Documents/Projects/online-cv-verison2/node_modules/mongodb/lib/cmap/auth/scram.js:39:16)
+    at async performInitialHandshake (/Users/stefanramac/Documents/Projects/online-cv-verison2/node_modules/mongodb/lib/cmap/connect.js:104:13)
+    at async connect (/Users/stefanramac/Documents/Projects/online-cv-verison2/node_modules/mongodb/lib/cmap/connect.js:24:9)
+
+2025-06-22T11:08:19.553Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:412:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:117:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:08:21.053Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:412:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:117:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:09:26.341Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:412:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:117:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:09:28.526Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:412:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:117:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:10:48.029Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:415:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:120:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:12:28.121Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:415:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:120:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:13:06.765Z: Error: Uncaught Exception: Cannot access 'authenticateToken' before initialization
+Origin: uncaughtException
+Stack: ReferenceError: Cannot access 'authenticateToken' before initialization
+    at Object.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:415:22)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:120:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+
+2025-06-22T11:14:05.101Z: Error: Uncaught Exception: listen EADDRINUSE: address already in use 0.0.0.0:3000
+Origin: uncaughtException
+Stack: Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at doListen (node:net:2116:7)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+    at process.<anonymous> (/Users/stefanramac/Documents/Projects/online-cv-verison2/server.js:120:20)
+    at process.emit (node:events:519:28)
+    at process._fatalException (node:internal/process/execution:188:25)
+

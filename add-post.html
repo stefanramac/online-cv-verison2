@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="/dashboard" class="logo-text">Admin Panel</a>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="/dashboard" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/add-post" class="nav-link active"><i class="fas fa-plus-square"></i> Add Post</a></li>
+                <li><a href="/my-blogs" class="nav-link"><i class="fas fa-newspaper"></i> See My Blogs</a></li>
+                <li><a href="/health" class="nav-link"><i class="fas fa-heartbeat"></i> System Health</a></li>
+                <li><a href="/settings" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+                <li class="nav-separator"></li>
+                <li><a href="#" id="logout-btn-sidebar" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li class="nav-separator"></li>
+                <li><a href="/" class="nav-link"><i class="fas fa-home"></i> Back to Main Site</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <p>&copy; 2024 All rights reserved.</p>
+        </footer>
+    </aside>
+
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <main class="main-content-admin">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h3>Add New Blog Post</h3>
+                <a href="/dashboard" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+            </div>
+            <div id="add-post-section">
+                <form id="add-post-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">Summary</label>
+                        <textarea id="summary" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">Image URL</label>
+                        <input type="url" id="imageUrl" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="mainCategory">Main Category</label>
+                        <input type="text" id="mainCategory" required placeholder="e.g., Integration">
+                    </div>
+                    <div class="form-group">
+                        <label for="categories">Categories (comma-separated)</label>
+                        <input type="text" id="categories" required placeholder="e.g., integration, java, tutorial">
+                    </div>
+                    <div class="form-group">
+                        <label for="readingTime">Reading Time (minutes)</label>
+                        <input type="number" id="readingTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Full Post Link</label>
+                        <input type="url" id="link" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Add Post</button>
+                </form>
+                <div id="add-post-status"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/add-post.js"></script>
+</body>
+</html> 
